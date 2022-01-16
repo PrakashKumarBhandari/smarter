@@ -1750,3 +1750,17 @@ a.awsm-load-more-btn:hover {
 .swiper-slide:nth-child(5n) {
     width: 20%;
 }
+
+
+
+.footer-form .wpcf7-response-output{
+    color: #fff!important;
+    margin: 0px!important;
+}
+
+.left-contactForm  .wpcf7-response-output{
+    margin:-2em 0em 0em 0em!important;
+}
+
+.quote-wraper a{ color: var(--primary-color); font-weight: bold;}
+.quote-wraper a:hover{ color: var(--primary-color)!important; font-weight: bold; text-decoration: underline!important;}

@@ -1,7 +1,8 @@
 <?php
-/* Template Name: Test Template */ 
+/* Template Contact Us */ 
 
 get_header();?>
+
 <!-- Contact Us page -->
 <div id="fullpage" class="znt-index">
     <section class="section" id="section0" >
@@ -142,4 +143,6 @@ get_header();?>
             </div>
         </div>
     </section>
+
+   
 <?php get_footer(); ?>
