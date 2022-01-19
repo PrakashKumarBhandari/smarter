@@ -1,4 +1,5 @@
 
+//fill page scroll over flow
 
 
 // full page scroll
@@ -8,6 +9,7 @@ var myFullpage = new fullpage('#fullpage', {
 	navigation: true,
 	navigationPosition: 'right',
 	responsiveWidth: 768,
+	scrollOverflow: true,
 	paralax: true,
 	onLeave: function (origin, destination, direction) {
 		var loadedSection = this;

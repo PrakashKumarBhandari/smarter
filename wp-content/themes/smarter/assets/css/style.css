@@ -1751,6 +1751,19 @@ a.awsm-load-more-btn:hover {
     width: 20%;
 }
 
+/******************** Service listing page **************************/
+.service-listing-single:hover{
+    background-color: #61ce70;
+    transition: 0.5s;
+}
+.service-listing-single:hover .content-servicesSlider h3, .service-listing-single:hover .content-servicesSlider p{
+    color: #fff;
+    transition: 0.6s;
+}
+.service-listing-wrapper{
+    padding-bottom: 30px;
+}
+
 
 
 .footer-form .wpcf7-response-output{
