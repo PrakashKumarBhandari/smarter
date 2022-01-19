@@ -1756,6 +1756,7 @@ a.awsm-load-more-btn:hover {
 .footer-form .wpcf7-response-output{
     color: #fff!important;
     margin: 0px!important;
+    width: 50%;
 }
 
 .left-contactForm  .wpcf7-response-output{
