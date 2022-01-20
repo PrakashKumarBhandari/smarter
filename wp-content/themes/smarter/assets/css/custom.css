@@ -2,3 +2,11 @@
     color:var(--white) !important;
     color:#fff;
 }
+
+.affiliate-slider{
+	-webkit-mask-image: -webkit-linear-gradient( 0deg , rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0));
+}
+.padding-black {
+    background: rgba(0,0,0,0.60);
+    padding: 25px;
+}

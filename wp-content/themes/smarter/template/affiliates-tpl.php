@@ -52,36 +52,37 @@ get_header();?>
                 </div>
             </div>
         </section>
-
+<?php /* ?>
             <section class="section" id="section1">
                  <!-- Swiper -->
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        <div class="swiper-slide">Slide 4</div>
-        <div class="swiper-slide">Slide 5</div>
-        <div class="swiper-slide">Slide 6</div>
-        <div class="swiper-slide">Slide 7</div>
-        <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
+                <div class="swiper mySwiper">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                    <div class="swiper-slide">Slide 4</div>
+                    <div class="swiper-slide">Slide 5</div>
+                    <div class="swiper-slide">Slide 6</div>
+                    <div class="swiper-slide">Slide 7</div>
+                    <div class="swiper-slide">Slide 8</div>
+                    <div class="swiper-slide">Slide 9</div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
             </section>
-
+        </section>
+<?php */ ?>
         <section class="section " id="section1">
             <div class="container-fluid">
                 <div class="section-title">
                     <div class="main-title text-center">
-                        <h2>Services<span class="mg-l">We Offer</span></h2>
+                        <h2><span class="mg-l">Builder & Integrator </span>Program</h2>
                     </div>
                     <div class="section-paragraph mx-w830 text-center margin-center mt-20">It is a long established fact that a reader will be distracted by the readable content of a page when looking .</div>
                 </div>
             </div>
             <div class="offer-sliderContents">
-                <div class="owl-carousel services-slider owl-theme">
+                <div class="owl-carousel services-slider owl-theme affiliate-slider"><!-- add class affiliate-slider for right opacity-->
                     <div class="item cardSlider-services">
                         <div class="card-slider">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner/banner1.jpg" alt="">
@@ -138,6 +139,38 @@ get_header();?>
         </section>
         <section class="section fullcover" id="section1" style="background-image: url(<?php echo get_template_directory_uri();?>/assets/images/banner/banner-bg1.jpg">
 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-7  wow fadeInRight" >
+                            <div class="section-title">
+                                <div class="main-title">
+                                    <h2><span class="primary-color font-weight-bold">Customer Referals</span></h2>
+                                    <div class="section-paragraph mx-w830 mt-20">When you need ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit is Dolore ratione deserunt sunt laborum voluptatem voluptatum incidunt magnam, alias illum molestias similique doloremque vel architecto dignissimos eius mollitia excepturi asperiores eligendi?</div>
+                                </div>
+                            </div>
+                            <div class="responsibility-contents">
+                                <div class="respon_contentList">
+                                    <div class="respon_contentTitle">
+                                        <h3 class="color-black">Temporary title goes Here</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ratione deserunt sunt laborum voluptatem voluptatum incidunt magnam, alias illum molestias similique doloremque vel architecto dignissimos eius mollitia excepturi asperiores eligendi?</p>
+                                    </div>
+                                </div>
+                                    <div class="respon_contentList">
+                                        <div class="respon_contentTitle">
+                                            <h3 class="color-black">Temporary title goes Here</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ratione deserunt sunt laborum voluptatem voluptatum incidunt magnam, alias illum molestias similique doloremque vel architecto dignissimos eius mollitia excepturi asperiores eligendi?</p>
+                                        </div>
+                                </div>
+                                    <div class="respon_contentList">
+                                        <div class="respon_contentTitle">
+                                            <h3 class="color-black">Temporary title goes Here</h3>
+                                            <p>Alias illum molestias similique doloremque vel architecto dignissimos eius mollitia excepturi asperiores.</p>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row close -->
+                </div>
         </section>
 
         
