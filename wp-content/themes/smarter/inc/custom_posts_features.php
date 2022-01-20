@@ -49,7 +49,7 @@ function required_custom_post_types(){
         'capability_type'    => 'post',
         'menu_position'      => 19,
         'menu_icon' => 'dashicons-twitch',
-        'supports'           => array( 'title','editor','thumbnail'),
+        'supports'           => array( 'title','editor'), // thumbnail
     );
     register_post_type( 'testimonials', $testimonial_args );
 
