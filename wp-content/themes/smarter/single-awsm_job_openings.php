@@ -9,7 +9,6 @@
 
 get_header('inner');
 ?>
-<div id="fullpage" class="znt-index">
 <?php
 while ( have_posts() ) :
 	the_post();
