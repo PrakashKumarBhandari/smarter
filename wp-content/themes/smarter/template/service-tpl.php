@@ -86,12 +86,12 @@ get_header(); ?>
                 </div>
             </div>
             <div class="offer-sliderContents">
-                <div class="owl-carousel services-slider owl-theme">
+                <div class="owl-carousel services-slider blur-slider owl-theme"> <!-- adding class blur-slider will give blur effect on the  owl carousel -->
                     <div class="item cardSlider-services">
                         <div class="card-slider">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner/banner1.jpg" alt="">
                             <div class="content-servicesSlider">
-                                <h3>Live clean & Green</h3>
+                                <h3>Live clean & Green 1</h3>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus soluta tenetur, ratione eos tempore aliquid. </p>
                                 <div class="button-cnt">
                                     <button>Click Here</button>
@@ -104,7 +104,7 @@ get_header(); ?>
                         <div class="card-slider">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner/banner1.jpg" alt="">
                             <div class="content-servicesSlider">
-                                <h3>Live clean & Green</h3>
+                                <h3>Live clean & Green 2</h3>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus soluta tenetur, ratione eos tempore aliquid. </p>
                                 <div class="button-cnt">
                                     <button>Click Here</button>
@@ -117,7 +117,7 @@ get_header(); ?>
                         <div class="card-slider">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner/banner1.jpg" alt="">
                             <div class="content-servicesSlider">
-                                <h3>Live clean & Green</h3>
+                                <h3>Live clean & Green 3</h3>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus soluta tenetur, ratione eos tempore aliquid. </p>
                                 <div class="button-cnt">
                                     <button>Click Here</button>
@@ -130,7 +130,31 @@ get_header(); ?>
                         <div class="card-slider">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner/banner1.jpg" alt="">
                             <div class="content-servicesSlider">
-                                <h3>Live clean & Green</h3>
+                                <h3>Live clean & Green 4</h3>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus soluta tenetur, ratione eos tempore aliquid. </p>
+                                <div class="button-cnt">
+                                    <button>Click Here</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item cardSlider-services">
+                        <div class="card-slider">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner/banner1.jpg" alt="">
+                            <div class="content-servicesSlider">
+                                <h3>Live clean & Green 5</h3>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus soluta tenetur, ratione eos tempore aliquid. </p>
+                                <div class="button-cnt">
+                                    <button>Click Here</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item cardSlider-services">
+                        <div class="card-slider">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner/banner1.jpg" alt="">
+                            <div class="content-servicesSlider">
+                                <h3>Live clean & Green 6</h3>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus soluta tenetur, ratione eos tempore aliquid. </p>
                                 <div class="button-cnt">
                                     <button>Click Here</button>

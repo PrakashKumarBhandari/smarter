@@ -1777,3 +1777,78 @@ a.awsm-load-more-btn:hover {
 
 .quote-wraper a{ color: var(--primary-color); font-weight: bold;}
 .quote-wraper a:hover{ color: var(--primary-color)!important; font-weight: bold; text-decoration: underline!important;}
+
+
+/******************** Service Slider  **************************/
+
+.singlebanner{
+   width: 100%;
+   height: 35vh;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   display: grid;
+   align-items: center;
+}
+.blur-slider .owl-nav {
+    opacity: 0;
+    transition: 0.5s all ease;
+}
+.blur-slider:hover .owl-nav {
+    opacity: 1;
+    transition: 0.5s all ease;
+}
+
+.blur-slider .owl-nav .disabled {
+    opacity: 0;
+    transition: 0.5s all ease;
+}
+.blur-slider .owl-nav .owl-prev {
+    position: absolute;
+    top: 25%;
+    left: 1%;
+}
+
+.blur-slider .owl-nav .owl-next {
+    position: absolute;
+    top: 25%;
+    right: 2%;
+}
+.blur-slider .owl-nav button{
+    background: #61ce70 !important;
+    margin-left: 10px;
+    border-radius: 100%;
+    height: 32px;
+    width: 32px;
+    line-height: 32px !important;
+    text-align: center;
+    font-size: 32px !important;
+    color: #fff !important;
+}
+.blur-slider .owl-nav .owl-prev:after{
+    content: '';
+    position: absolute;
+    height: 45vh;
+    top: -12vh;
+    background: linear-gradient(90deg, rgb(255,255,255) 0%, rgba(255,255,255,.0) 100%);
+    width: 12vh;
+    left: -4vh;
+    z-index: 1;
+}
+
+.blur-slider .owl-nav .owl-next:after{
+  content: '';
+    position: absolute;
+    height: 45vh;
+    top: -12vh;
+    background: linear-gradient(-90deg, rgb(255,255,255) 0%, rgba(255,255,255,.0) 100%);
+    width: 12vh;
+    right: -4vh;
+}
+/******* single job post margin and padding  ******/
+.single-job-content-block ul{
+    margin-bottom: 20px;
+}
+.awsm-job-specification-item{
+    margin-bottom: 10px;
+}

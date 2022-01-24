@@ -199,17 +199,32 @@ jQuery(".opentooltip").click(function () {
 
 // sider services
 $('.services-slider').owlCarousel({
-	items: 4,
 	loop: false,
-	center: true,
+	responsiveClass: true,
 	stagePadding: 15,
 	infinite: false,
 	margin: 30,
 	URLhashListener: true,
-	startPosition: 'URLHash'
+	startPosition: 'URLHash',
+	nav: true,
+	navText: [
+    '<',
+    '>' 
+  ],
+  responsive: {
+		0: {
+			items: 1,
+			margin: 10,
+		},
+		600: {
+			items: 2,
+			margin: 10,
+		},
+		1000: {
+			items: 3
+		}
+	}
 });
-
-
 
 
 $('.wht-theysay').owlCarousel({

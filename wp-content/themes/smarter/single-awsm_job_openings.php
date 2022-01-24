@@ -34,7 +34,8 @@ while ( have_posts() ) :
             <div class="container-fluid">
                 <div class="contents-about">
                     <div class="row"> 
-						<?php
+						<div class="single-job-content-block">
+							<?php
 							the_content(
 								sprintf(
 									wp_kses(
@@ -56,7 +57,8 @@ while ( have_posts() ) :
 									'after'  => '</div>',
 								)
 							);
-						?>                        
+						?>           
+						</div>             
                     </div>
                 </div>
             </div>
