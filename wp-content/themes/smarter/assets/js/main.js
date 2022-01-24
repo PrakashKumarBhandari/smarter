@@ -201,7 +201,6 @@ jQuery(".opentooltip").click(function () {
 $('.services-slider').owlCarousel({
 	loop: false,
 	responsiveClass: true,
-	stagePadding: 15,
 	infinite: false,
 	margin: 30,
 	URLhashListener: true,
@@ -215,13 +214,16 @@ $('.services-slider').owlCarousel({
 		0: {
 			items: 1,
 			margin: 10,
+			stagePadding: 15,
 		},
 		600: {
 			items: 2,
 			margin: 10,
+			stagePadding: 15,
 		},
 		1000: {
-			items: 3
+			items: 3,
+			stagePadding: 250,
 		}
 	}
 });
