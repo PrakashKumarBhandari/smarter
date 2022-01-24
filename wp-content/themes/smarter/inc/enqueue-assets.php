@@ -27,6 +27,7 @@ function smarter_homes_scripts() {
 	wp_enqueue_script( 'owl-carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'aos','https://unpkg.com/aos@2.3.1/dist/aos.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'swipe','https://unpkg.com/swiper/swiper-bundle.min.js', array(), _S_VERSION, true );
+    wp_enqueue_script( 'scrolloverflow', get_template_directory_uri() . '/assets/js/scrolloverflow.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'smarter-fullpage-scroll', get_template_directory_uri() . '/assets/js/fullpage.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'smarter-main', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true );
 	

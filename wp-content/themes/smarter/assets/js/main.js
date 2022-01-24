@@ -1,4 +1,5 @@
 
+//fill page scroll over flow
 
 
 // full page scroll
@@ -8,6 +9,7 @@ var myFullpage = new fullpage('#fullpage', {
 	navigation: true,
 	navigationPosition: 'right',
 	responsiveWidth: 768,
+	scrollOverflow: true,
 	paralax: true,
 	onLeave: function (origin, destination, direction) {
 		var loadedSection = this;
@@ -197,17 +199,34 @@ jQuery(".opentooltip").click(function () {
 
 // sider services
 $('.services-slider').owlCarousel({
-	items: 4,
 	loop: false,
-	center: true,
-	stagePadding: 15,
+	responsiveClass: true,
 	infinite: false,
 	margin: 30,
 	URLhashListener: true,
-	startPosition: 'URLHash'
+	startPosition: 'URLHash',
+	nav: true,
+	navText: [
+    '<',
+    '>' 
+  ],
+  responsive: {
+		0: {
+			items: 1,
+			margin: 10,
+			stagePadding: 15,
+		},
+		600: {
+			items: 2,
+			margin: 10,
+			stagePadding: 15,
+		},
+		1000: {
+			items: 3,
+			stagePadding: 250,
+		}
+	}
 });
-
-
 
 
 $('.wht-theysay').owlCarousel({
