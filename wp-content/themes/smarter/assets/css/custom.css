@@ -10,3 +10,14 @@
     background: rgba(0,0,0,0.60);
     padding: 25px;
 }
+
+/*for single job header  */
+.singlebanner {
+    width: 100%;
+    height: 35vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: grid;
+    align-items: center;
+}
