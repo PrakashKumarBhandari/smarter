@@ -1,7 +1,9 @@
 <?php
-/* Template Name: Test Template */ 
+/*  Service */
 
-get_header();?><!-- career page -->
+get_header(); ?>
+
+<!-- career page -->
 <div id="fullpage" class="znt-index">
     <?php
     while (have_posts()) : the_post();
@@ -332,5 +334,4 @@ get_header();?><!-- career page -->
         </section>
     <?php endwhile; // end of the loop. 
     ?>
-
     <?php get_footer(); ?>

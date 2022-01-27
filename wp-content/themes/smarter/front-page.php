@@ -49,8 +49,7 @@ get_header();?>
             if ( have_rows( 'banner_slider_image' ) ) :
             // Loop through rows.
             while ( have_rows( 'banner_slider_image' ) ) :
-            the_row();
-            
+            the_row();            
             if($bs_count == 3){ $bs_count = 0; }
 
             $slider_big_image  = '';
@@ -97,14 +96,12 @@ get_header();?>
                                 $counter_hover++;
                                 endwhile;
                                 ?>
-
                             </div>
                         </div>
                     </div>
                     <?php                   
                     endif;
-                    ?>      
-                    
+                    ?>                          
                     <div class="slider-caption">
                         <div class="slider-contents">
                             <div class="slider-heading  <?php if($bs_count  == 2){ echo 'fadeY'; } ?>"  data-wow-delay="0.6s">
@@ -124,8 +121,7 @@ get_header();?>
                 </div>
             </div>
             <?php
-            $bs_count++;
-            
+            $bs_count++;            
             endwhile;
             endif;
             ?>
@@ -617,13 +613,6 @@ get_header();?>
                      </div>
                  </div>
              </div>
-         </div>
-         
-     </div>
-     <!-- end why solar Energy -->
- 
-     <!-- Sticky footer -->	
-
-     <!-- sticky footer -->                        
-
+         </div>         
+</div>                   
 <?php get_footer(); ?>

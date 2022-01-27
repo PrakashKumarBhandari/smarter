@@ -33,6 +33,7 @@
         </div>	
     </div>	
 </div>	
+<br/><br/><br/>
 
 <?php wp_footer(); ?>
 </body>

@@ -18,7 +18,8 @@ if ( !function_exists('smarter_add_image_sizes') ){
         // add_image_size( 'press_image', 600, 270);
         // add_image_size( 'press_image_center', 600, 270, array( 'center', 'center' ) );       
         // add_image_size( 'banner_small_height', 1920,240,true);
-        // add_image_size( 'banner_image', 1920,400,true);       
+        add_image_size( 'section_bg_image', 1920,970,true);  
+        add_image_size( 'slider_medium', 324, 178,true);     
     }
 }
 add_action( 'after_setup_theme', 'smarter_add_image_sizes' );
@@ -70,9 +71,18 @@ function required_custom_post_types(){
        'public' => true,
        'menu_position'=> 23,
        'supports' => array('title','editor','thumbnail','excerpt'),
-       'rewrite'=> array('slug'=> 'awards'),
-       'menu_icon' => 'dashicons-buddicons-groups'
+       'rewrite'=> array('slug'=> 'services'),
+       'menu_icon' => 'dashicons-table-row-before'
    )); 
+
+   register_post_type('solutions', array(
+    'labels' => array('name' => 'Solutions'),
+    'public' => true,
+    'menu_position'=> 23,
+    'supports' => array('title','editor','thumbnail','excerpt'),
+    'rewrite'=> array('slug'=> 'solutions'),
+    'menu_icon' => 'dashicons-editor-contract'
+)); 
 }
 add_action('init','required_custom_post_types');
 
