@@ -5,8 +5,19 @@ get_header();?>
 
 <!-- About Us page -->
 <div id="fullpage" class="znt-index">
+<?php
+    while (have_posts()) : the_post();
+    
+    $banner_bg = get_template_directory_uri().'/assets/images/banner/heading/banner1.jpg';
+    $banner_img_url = get_field( 'banner_image' );
+    if ( ! empty( $banner_img_url ) ) {
+        $banner_bg = $banner_img_url['url'];
+    }
+
+    ?>
+
     <section class="section" id="section0" >
-        <div class="title-banner halfbanner" style="background-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%, rgba(0,212,255,1) 100%), url(<?php echo get_template_directory_uri();?>/assets/images/banner/heading/banner1.jpg">
+        <div class="title-banner halfbanner" style="background-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%, rgba(0,212,255,1) 100%), url(<?php echo $banner_bg;?>)">
             <div class="container-fluid">
                 <div class="heading-contents">
                     <div class="heading-title wow fadeInDown">
@@ -341,8 +352,7 @@ get_header();?>
                                             <a><?php the_sub_field( 'question' ); ?></a>
                                             <p><?php the_sub_field( 'answer' ); ?></p>
                                         </li>
-                                        <?php
-                                        
+                                        <?php                                        
                                         }
                                         $counter_faq++;
                                         endwhile;
@@ -386,4 +396,6 @@ get_header();?>
             </div>
         </div>
     </section>
+    <?php endwhile; // end of the loop. 
+?>
 <?php get_footer(); ?>

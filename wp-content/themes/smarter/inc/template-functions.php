@@ -91,17 +91,41 @@ if ( !function_exists('smarter_add_image_sizes') ){
         
         // Add your own image sizes
         // add_image_size( 'small_icon', 40, 40);
-        // add_image_size( 'mid_icon', 80, 80);
-        // add_image_size( 'press_image', 600, 270);
-        // add_image_size( 'press_image_center', 600, 270, array( 'center', 'center' ) );       
-        // add_image_size( 'banner_small_height', 1920,240,true);
+        add_image_size( 'top_banner_small', 1920,450,true);
         add_image_size( 'banner_image', 1920,970,true);       
     }
 }
 add_action( 'after_setup_theme', 'smarter_add_image_sizes' );
 
 
-
+if( function_exists('acf_add_options_page') ) {	
+	acf_add_options_page();	
+}
+/*
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Header Settings',
+		'menu_title'	=> 'Header',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Footer Settings',
+		'menu_title'	=> 'Footer',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+}
+*/
  
 function clean_custom_menu( $theme_location ) {
     if ( ($theme_location) && ($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {

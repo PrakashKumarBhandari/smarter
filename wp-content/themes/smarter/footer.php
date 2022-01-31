@@ -113,16 +113,17 @@
 <div class="sticky_footer">	
     <div class="container-fluid">	
         <div class="btn_stikcyWrapper">	
+            <?php 
+            if( have_rows('menus', 'option') ):
+                while( have_rows('menus', 'option') ): the_row(); 
+                ?>             
             <div class="sticky_contactBtn">	
-                <a href="<?php echo site_url('/contact-us');?>">Contact Us</a>	
+                <a href="<?php echo get_sub_field('menu_link');?>"><?php the_sub_field('menu_items'); ?></a>	
             </div>
-            <div class="sticky_contactBtn">	
-                    <a href="<?php echo site_url('/contact-us');?>">Why Choose Us</a>	
-                </div>
-
-                <div class="sticky_gaqtBtn">	
-                    <a href="<?php echo site_url('/');?>">Get a Quote Now</a>	
-                </div>	
+            <?php
+            endwhile;
+            endif;
+            ?>
         </div>	
     </div>	
 </div>	
