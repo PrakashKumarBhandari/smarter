@@ -143,7 +143,7 @@
     font-size: 14px;
     font-weight: normal;
     padding: 3.6vmin 4.6vmin;
-    pointer-events: none;
+    /*pointer-events: none;*/
     position: absolute;
     text-align: left;
     bottom: 100%;
@@ -196,7 +196,7 @@
     font-size: 14px;
     font-weight: normal;
     padding: 3.6vmin 4.6vmin;
-    pointer-events: none;
+    /*pointer-events: none;*/
     position: absolute;
     text-align: left;
     bottom: 100%;
@@ -231,7 +231,7 @@
     font-size: 14px;
     font-weight: normal;
     padding: 3.6vmin 4.6vmin;
-    pointer-events: none;
+    /*pointer-events: none;*/
     position: absolute;
     text-align: left;
     bottom: 100%;
@@ -278,7 +278,7 @@
     font-size: 14px;
     font-weight: normal;
     padding: 3.6vmin 4.6vmin;
-    pointer-events: none;
+    /*pointer-events: none;*/
     position: absolute;
     text-align: left;
     bottom: 100%;
