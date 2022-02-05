@@ -21,7 +21,7 @@
 
     .side-menu {
         background: rgb(0, 0, 0);
-        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 100%, rgba(0, 212, 255, 1) 100%);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%);
         padding: 2.8vmin 3.2vmin;
         width: 22vmin;
     }
@@ -372,7 +372,7 @@
 
     .side-menu {
         background: rgb(0, 0, 0);
-        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 100%, rgba(0, 212, 255, 1) 100%);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%);
         padding: 6vmin 4vmin;
         width: 26vmin;
     }
