@@ -136,6 +136,10 @@
         padding-top: 50px;
         padding-bottom: 50px;
     }
+    .plr-30{
+        padding-right: 30px;
+        padding-left: 30px;
+    }
 
     .mtb-50 {
         margin-top: 50px;
@@ -2638,6 +2642,12 @@ ul.auto-mg li a:hover {
     left: -0.9vmin;
     top: -0.9vmin;
     border-radius: 50%;
+}
+@media (max-width: 768px) {
+    .overall-section{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 }
 /* 
 .owl-stage {

@@ -1862,6 +1862,21 @@ a.awsm-load-more-btn:hover {
     width: 40vh;
     right: -4vh;
 }
+.blur-slider .owl-dot {
+    height: 10px;
+    width: 10px;
+    background: #afafaf  !important;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.blur-slider .owl-dot.active{
+    background: #61ce70 !important;
+}
+.blur-slider .owl-dots {
+    text-align: center;
+    margin-top: 20px;
+
+}
 /******* single job post margin and padding  ******/
 .single-job-content-block ul{
     margin-bottom: 20px;
@@ -1900,6 +1915,7 @@ a.awsm-load-more-btn:hover {
     top: 100px;
     left: 0;
 }
+
 @media only screen and (max-width: 648px) {
     .jobs-wrapper{
         padding: 40px 0px;

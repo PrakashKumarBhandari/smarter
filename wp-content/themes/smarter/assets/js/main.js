@@ -215,15 +215,20 @@ $('.services-slider').owlCarousel({
 			items: 1,
 			margin: 10,
 			stagePadding: 15,
+			autoplay: true,
+			nav: false,
+			dots: true,
 		},
 		600: {
 			items: 2,
 			margin: 10,
 			stagePadding: 15,
+			dots: false,
 		},
 		1000: {
 			items: 3,
 			stagePadding: 250,
+			dots: false,
 		}
 	}
 });
