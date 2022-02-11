@@ -30,7 +30,7 @@ while ( have_posts() ) :
                 </div>
             </div>
         </div>
-        <div class="carrier-single-contents ptb-50">
+        <div class="carrier-single-contents ptb-50 plr-30">
             <div class="container-fluid">
                 <div class="contents-about">
                     <div class="row"> 
