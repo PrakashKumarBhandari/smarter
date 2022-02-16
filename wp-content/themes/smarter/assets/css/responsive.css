@@ -103,6 +103,21 @@
     /* .smarter-home1{
         display: none;
     } */
+    .missionImage-1 {
+        width: 24vmin;
+    }
+
+    .missionImage-2 {
+        width: 19vmin;
+    }
+
+    .missionImage-3 {
+        width: 25vmin;
+        display: none !important;
+    }
+    .pt-d {
+        padding-top: 0vmin !important;
+    }
 }
 
 /* max 991 */
@@ -136,7 +151,7 @@
         padding-top: 50px;
         padding-bottom: 50px;
     }
-    .plr-30{
+    .plr-30 {
         padding-right: 30px;
         padding-left: 30px;
     }
@@ -192,6 +207,18 @@
     .right-cardContents {
         margin-left: 24px;
         width: 83%;
+    }
+
+    .missionImage-1 {
+        display: none !important;
+    }
+
+    .missionImage-2 {
+        display: none !important;
+    }
+
+    .about-contents-custom {
+        padding: 6vmin 0;
     }
 }
 
@@ -1467,6 +1494,50 @@
         display: grid;
         align-items: center;
     }
+
+    .banner-30 {
+        height: 33vh;
+    }
+
+    .about-contents-custom {
+        background-color: #e6f7e8;
+        display: grid;
+        align-items: center;
+        padding: 10vmin 0px;
+        position: relative;
+        height: 67vh;
+    }
+
+    .missionImage-1 {
+        width: 33vmin;
+    }
+
+    .missionImage-2 {
+        width: 28vmin;
+        margin-left: 5vmin;
+    }
+
+    .missionImage-3 {
+        width: 25vmin;
+    }
+
+    .abt-images {
+        display: inline-block;
+        margin-right: 2vmin;
+        text-align: right;
+    }
+
+    .abt-images img {
+        display: block;
+        margin-bottom: 1.8vmin;
+    }
+
+    .custom-abt-img {
+        position: absolute;
+        top: 8vmin;
+        left: 0;
+    }
+
     .heading-contents {
         text-align: center;
         color: var(--white);
@@ -2644,7 +2715,7 @@ ul.auto-mg li a:hover {
     border-radius: 50%;
 }
 @media (max-width: 768px) {
-    .overall-section{
+    .overall-section {
         padding-top: 50px;
         padding-bottom: 50px;
     }

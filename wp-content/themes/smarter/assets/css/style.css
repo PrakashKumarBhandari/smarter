@@ -1304,7 +1304,7 @@ img.op-2 {
     background: rgba(0, 0, 0, 0);
     color: var(--white) !important;
     font-weight: 400 !important;
-    border-radius: 0px!important;
+    border-radius: 0px !important;
     padding: 1.7vmin !important;
     font-size: 12px !important;
 }
@@ -1436,7 +1436,7 @@ img.op-2 {
     border: 0;
 }
 .button-cnt a:hover {
-background-color: #318b3e !important;
+    background-color: #318b3e !important;
 }
 
 .offer-sliderContents {
@@ -1689,7 +1689,7 @@ akash2046@gmail.com
 a.awsm-load-more-btn:hover {
     color: #fff !important;
     background: #61ce70;
-    border: 1px solid #61ce70!important;
+    border: 1px solid #61ce70 !important;
 }
 
 .smartser-form input.form-control::placeholder {
@@ -1768,44 +1768,49 @@ a.awsm-load-more-btn:hover {
 }
 
 /******************** Service listing page **************************/
-.service-listing-single:hover{
+.service-listing-single:hover {
     background-color: #61ce70;
     transition: 0.5s;
 }
-.service-listing-single:hover .content-servicesSlider h3, .service-listing-single:hover .content-servicesSlider p{
+.service-listing-single:hover .content-servicesSlider h3,
+.service-listing-single:hover .content-servicesSlider p {
     color: #fff;
     transition: 0.6s;
 }
-.service-listing-wrapper{
+.service-listing-wrapper {
     padding-bottom: 30px;
 }
 
-
-
-.footer-form .wpcf7-response-output{
-    color: #fff!important;
-    margin: 0px!important;
+.footer-form .wpcf7-response-output {
+    color: #fff !important;
+    margin: 0px !important;
     width: 50%;
 }
 
-.left-contactForm  .wpcf7-response-output{
-    margin:-2em 0em 0em 0em!important;
+.left-contactForm .wpcf7-response-output {
+    margin: -2em 0em 0em 0em !important;
 }
 
-.quote-wraper a{ color: var(--primary-color); font-weight: bold;}
-.quote-wraper a:hover{ color: var(--primary-color)!important; font-weight: bold; text-decoration: underline!important;}
-
+.quote-wraper a {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+.quote-wraper a:hover {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    text-decoration: underline !important;
+}
 
 /******************** Service Slider  **************************/
 
-.singlebanner{
-   width: 100%;
-   height: 35vh;
-   background-position: center;
-   background-size: cover;
-   background-repeat: no-repeat;
-   display: grid;
-   align-items: center;
+.singlebanner {
+    width: 100%;
+    height: 35vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: grid;
+    align-items: center;
 }
 .blur-slider .owl-nav {
     opacity: 0;
@@ -1831,7 +1836,7 @@ a.awsm-load-more-btn:hover {
     top: 25%;
     right: 2%;
 }
-.blur-slider .owl-nav button{
+.blur-slider .owl-nav button {
     background: #61ce70 !important;
     margin-left: 10px;
     border-radius: 100%;
@@ -1842,50 +1847,49 @@ a.awsm-load-more-btn:hover {
     font-size: 32px !important;
     color: #fff !important;
 }
-.blur-slider .owl-nav .owl-prev:after{
-    content: '';
+.blur-slider .owl-nav .owl-prev:after {
+    content: "";
     position: absolute;
     height: 45vh;
     top: -12vh;
-    background: linear-gradient(90deg, rgb(255,255,255) 0%, rgba(255,255,255,.0) 100%);
-    width: 40vh;  /* width: 12vh; */
+    background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
+    width: 40vh; /* width: 12vh; */
     left: -4vh;
     z-index: 1;
 }
 
-.blur-slider .owl-nav .owl-next:after{
-  content: '';
+.blur-slider .owl-nav .owl-next:after {
+    content: "";
     position: absolute;
     height: 45vh;
     top: -12vh;
-    background: linear-gradient(-90deg, rgb(255,255,255) 0%, rgba(255,255,255,.0) 100%);
+    background: linear-gradient(-90deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
     width: 40vh;
     right: -4vh;
 }
 .blur-slider .owl-dot {
     height: 10px;
     width: 10px;
-    background: #afafaf  !important;
+    background: #afafaf !important;
     border-radius: 100%;
     margin-right: 10px;
 }
-.blur-slider .owl-dot.active{
+.blur-slider .owl-dot.active {
     background: #61ce70 !important;
 }
 .blur-slider .owl-dots {
     text-align: center;
     margin-top: 20px;
-
 }
 /******* single job post margin and padding  ******/
-.single-job-content-block ul{
+.single-job-content-block ul {
     margin-bottom: 20px;
 }
-.awsm-job-specification-item{
+.awsm-job-specification-item {
     margin-bottom: 10px;
 }
 
-.text_left_image{
+.text_left_image {
     padding: 0px 20px 10px 0px;
     width: 35%;
 }
@@ -1893,31 +1897,18 @@ a.awsm-load-more-btn:hover {
 .jobs-wrapper {
     padding: 0;
 }
-.abt-images{
+.abt-images {
     display: inline-block;
     margin-right: 20px;
     text-align: right;
 }
-.abt-images img{
+.abt-images img {
     display: block;
     margin-bottom: 20px;
 }
-.about-contents-custom{
-    background-color: #e6f7e8;
-    display: grid;
-    align-items: center;
-    padding: 100px 0px;
-    position: relative;
-    height: 100vh;
-}
-.custom-abt-img{
-    position: absolute;
-    top: 100px;
-    left: 0;
-}
 
 @media only screen and (max-width: 648px) {
-    .jobs-wrapper{
+    .jobs-wrapper {
         padding: 40px 0px;
     }
 }

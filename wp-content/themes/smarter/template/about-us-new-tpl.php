@@ -6,7 +6,7 @@ get_header(); ?>
 <!-- About Us page -->
 <div id="fullpage" class="znt-index">
     <section class="section" id="section0">
-        <div class="title-banner halfbanner"
+        <div class="title-banner halfbanner banner-30"
              style="background-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%, rgba(0,212,255,1) 100%), url(<?php echo get_template_directory_uri(); ?>/assets/images/banner/heading/banner1.jpg">
             <div class="container-fluid">
                 <div class="heading-contents">
@@ -24,22 +24,22 @@ get_header(); ?>
         <div class="about-contents-custom">
             <div class="custom-abt-img">
                 <div class="abt-images">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/aboutus1.jpg">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/aboutus3.jpg">
+                    <img class="missionImage-1"src="<?php echo get_template_directory_uri(); ?>/assets/images/aboutus1.jpg">
+                    <img class="missionImage-2" src="<?php echo get_template_directory_uri(); ?>/assets/images/aboutus3.jpg">
                 </div>
                 <div class="abt-images">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/aboutus2.jpg">
+                    <img class="missionImage-3"  src="<?php echo get_template_directory_uri(); ?>/assets/images/aboutus2.jpg">
                 </div>
             </div>
             <div class="container-fluid">
                 <div class="contents-about">
                     <div class="row">
                         <div class="col-md-6">
-
+                           
                         </div>
                         <div class="col-md-6">
                             <div class="wow fadeInDown">
-                                <div class="section-title">
+                                <div class="section-title pt-d">
                                     <div class="main-title">
                                         <h2><span>Our</span> Mission</h2>
                                     </div>
