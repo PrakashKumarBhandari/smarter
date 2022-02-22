@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Who we are Design*/
+/* Template Name: Who We Are*/
 
 get_header(); ?>
 
