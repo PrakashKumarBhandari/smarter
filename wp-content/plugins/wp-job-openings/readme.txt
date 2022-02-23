@@ -1,8 +1,8 @@
-=== WP Job Openings ===
+=== WP Job Openings - Job Listing, Career Page and Recruitment Plugin ===
 Contributors: awsmin, aravindajith, anantajitjg, sarathar, adhun, nithi22
 Tags: jobs, job listing, job openings, job board, careers page, jobs page, wp job opening, jobs plugin
-Requires at least: 4.6
-Tested up to: 5.8
+Requires at least: 4.8
+Tested up to: 5.9
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
@@ -99,68 +99,50 @@ The plugin comes with two layouts - Grid and List which are designed carefully a
 
 == Changelog ==
 
-= V 2.3.0 – 2021-09-16 =
-* Added: Timezone setting for job expiration.
-* Added: Setting to remove custom permalink front base.
-* Fixed: Slash issue in the mail with special characters.
-* Improved: Updated jQuery Validation Plugin to version 1.19.3.
-* Dev: Added new filter hooks to control the plugin-generated UI and content.
-* Dev: Improved Form Handling Hooks.
-* Dev: Deprecated 'awsm_specification_content' filter hook in favor of 'awsm_job_specs_content'.
+= V 3.2.1 - 2022-02-02 =
+* Fixed: Search field style issues in job listing.
+* Fixed: Responsive style issues with job filters.
+
+= V 3.2.0 - 2022-01-31 =
+* WordPress 5.9 compatibility fixes.
+* Added: Akismet Anti-Spam Protection.
+* Fixed: Application form issue with in-app browsers.
+* Improved: Job listing filters UI.
+* Other minor bug fixes and style improvements.
+
+= V 3.1.0 - 2021-12-22 =
+* Added: Option to enable plugin-based form styles (Settings > Form > General > Form Style). Job listing and detail page templates need to be updated if overridden in the theme.
+* Fixed: Warnings in job archive pages.
+* Fixed: Notifications translations not working with Polylang plugin.
+* Dev: Hook to customize the wrapping element class for the job listing and detail page.
+* Code improvements.
+
+= V 3.0.0 - 2021-12-03 =
+* Admin UI improvements.
+* Job listing UI improvements. The template file needs to be updated if overridden in the theme.
+* Added: Overview page with support for Applications Analytics widget, Get Started widget, Recent Applications widget, Open Positions widget, and Your Listings widget.
+* Added: Multiple pagination support - Classic or Modern.
+* Fixed: 'Add New' button for applications being displayed for Multisite network.
+* Fixed: Issue in removing duplicate job specification options.
+* Fixed: Email digest from address is not the same as the mail address for admin notification.
+* Improved: Admin dashboard widget.
+* Improved: Job Specifications settings.
+* Improved: HR user capabilities.
+* Dev: Deprecated job listing hooks.
+* Dev: Deprecated recent jobs widget hooks.
+* Dev: Hook to override the allowed HTML for the form.
+* Dev: Hook to customize expired job content.
 * Code improvements.
 * Other minor bug fixes.
 
-= V 2.2.0 – 2021-06-09 =
-* Added: Notification Mail Template Customizer (Settings > Notifications > Customize). Template files need to be updated if overridden in the theme.
-* Fixed: Pre validation for file field not working.
-* Fixed: Cover letter formatting issue in the notification mail content.
-* Fixed: Accents don't work in the Specification fields.
-* Improved: Form Handling. Template files need to be updated if overridden in the theme.
-* Improved: Notification HTML Mail Template.
-* Dev: New Hooks for Handling Job Filters.
-* Dev: Improved Form Handling Hooks.
-* Dev: Added JS Events to handle Form Submission, Filters, and Load More.
-* Other minor bug fixes and style improvements.
-
-= V 2.1.1 – 2021-04-21 =
-* Fixed: Issue with WooCommerce Plugin that prevents the users with HR Role from accessing the backend.
-* Fixed: 'Secure uploaded files' option doesn't work in 'Media Library' for some installations.
-* Fixed: Job Filters not working for some installations.
-* Improved: Redirect users with HR Role to job page instead of profile page after login.
-* Improved: WPML compatibility for Settings.
-* Other minor bug fixes and style improvements.
-
-= V 2.1.0 – 2020-12-08 =
-* WordPress 5.6 compatibility fixes.
-* Added: Featured image support for Job Openings and in the job listing and an option to enable the support. Template files need to be updated if overridden in theme.
-* Added: Excerpt, Author, and Custom fields support for Job Openings.
-* Added: Force expiry option in the submit meta box.
-* Added: Option to disable the archive page for Job Openings.
-* Improved: Date and Time formatting.
-* Code improvements and minor bug fixes.
-
-= V 2.0.0 - 2020-05-01 =
-* Admin UI improvements.
-* Added: New Onboarding interface.
-* Added: Job Overview dashboard widget.
-* Added: Custom Admin navigation.
-* Added: HTML Template support for notification mails.
-* Added: Daily email digest if there are new applications.
-* Added: Drag and Drop sorting for Job Specifications.
-* Added: Functionality to clear searched value.
-* Added: 'Actions' meta box in application edit screen.
-* Added: Next and Previous navigation in application edit screen.
-* Added: Reply-To support in Admin notification mail.
-* Fixed: An issue that prevents user from adding numeric values for job specification in job edit screen.
-* Fixed: Job detail page returning empty content in some themes.
-* Fixed: Specification terms not removing from settings if it contains some special characters.
-* Dev: New hooks for customizing the form fields.
-* Dev: New hook for customizing the terms display in job specification filters.
-* Other minor fixes and code improvements.
+= V 2.3.1 – 2021-10-28 =
+* Fixed: Media missing from library in WordPress.com when 'Secure uploaded files' option is enabled.
+* Fixed: Accessibility issues in job filters. #28
+* Fixed: GDPR text issue in Polylang when accents are used.
 
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/wp-job-openings/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.3.0 =
-New Features and Bug fixes.
+= 3.2.1 =
+Bug fixes.

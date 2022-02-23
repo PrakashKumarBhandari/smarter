@@ -5,7 +5,7 @@
  * Override this by copying it to currenttheme/wp-job-openings/mail/email-digest.php
  *
  * @package wp-job-openings
- * @version 2.0.0
+ * @version 3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -84,7 +84,7 @@ require AWSM_Job_Openings::get_template_path( 'header.php', 'mail' );
 						?>
 						</tbody>
 					</table>
-					<p style="margin-top: 40px;"><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=awsm_job_application' ) ); ?>" class="btn btn-primary"><?php esc_html_e( 'View All Applications', 'wp-job-openings' ); ?></a></p>
+					<p style="margin-top: 40px;"><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=awsm_job_openings&page=awsm-jobs-overview' ) ); ?>" class="btn btn-primary"><?php esc_html_e( 'View More', 'wp-job-openings' ); ?></a></p>
 				</div>
 			</td>
 		</tr>

@@ -77,6 +77,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'type'  => 'title',
 				),
 				array(
+					'name'          => 'awsm_jobs_archive_page_template',
+					'label'         => __( 'Jobs Archive page template', 'wp-job-openings' ),
+					'type'          => 'radio',
+					'choices'       => array(
+						array(
+							'value' => 'theme',
+							'text'  => __( 'Theme Template', 'wp-job-openings' ),
+						),
+						array(
+							'value' => 'plugin',
+							'text'  => __( 'Plugin Template', 'wp-job-openings' ),
+						),
+					),
+					'default_value' => 'plugin',
+				),
+				array(
 					'name'    => 'awsm_jobs_listing_view',
 					'label'   => __( 'Layout of job listing page', 'wp-job-openings' ),
 					'type'    => 'radio',
@@ -125,6 +141,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'other_attrs' => array(
 						'min' => '1',
 					),
+				),
+				array(
+					'name'          => 'awsm_jobs_pagination_type',
+					'label'         => __( 'Pagination Type', 'wp-job-openings' ),
+					'type'          => 'radio',
+					'choices'       => array(
+						array(
+							'value' => 'classic',
+							'text'  => __( 'Classic', 'wp-job-openings' ),
+						),
+						array(
+							'value' => 'modern',
+							'text'  => __( 'Modern', 'wp-job-openings' ),
+						),
+					),
+					'default_value' => 'modern',
 				),
 				array(
 					'id'      => 'awsm-appearance-listing-filter-title',

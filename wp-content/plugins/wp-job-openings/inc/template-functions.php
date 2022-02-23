@@ -3,7 +3,7 @@
  * Template specific functions
  *
  * @package wp-job-openings
- * @version 1.4
+ * @version 3.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,6 +16,26 @@ if ( ! function_exists( 'get_awsm_jobs_template_path' ) ) {
 	}
 }
 
+if ( ! function_exists( 'awsm_jobs_get_header' ) ) {
+	function awsm_jobs_get_header() {
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			require get_awsm_jobs_template_path( 'header', 'theme-compat' );
+		} else {
+			get_header();
+		}
+	}
+}
+
+if ( ! function_exists( 'awsm_jobs_get_footer' ) ) {
+	function awsm_jobs_get_footer() {
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			require get_awsm_jobs_template_path( 'footer', 'theme-compat' );
+		} else {
+			get_footer();
+		}
+	}
+}
+
 if ( ! function_exists( 'awsm_jobs_query' ) ) {
 	function awsm_jobs_query( $shortcode_atts = array() ) {
 		$args  = AWSM_Job_Openings::awsm_job_query_args( array(), $shortcode_atts );
@@ -25,14 +45,37 @@ if ( ! function_exists( 'awsm_jobs_query' ) ) {
 }
 
 if ( ! function_exists( 'awsm_jobs_view' ) ) {
-	function awsm_jobs_view() {
-		return AWSM_Job_Openings::get_job_listing_view();
+	function awsm_jobs_view( $shortcode_atts = array() ) {
+		return AWSM_Job_Openings::get_job_listing_view( $shortcode_atts );
+	}
+}
+
+if ( ! function_exists( 'awsm_jobs_wrapper_class' ) ) {
+	function awsm_jobs_wrapper_class( $echo = true ) {
+		$wrapper_class = '';
+		$form_style    = get_option( 'awsm_jobs_form_style', 'theme' );
+		if ( $form_style === 'plugin' ) {
+			$wrapper_class = ' awsm-job-form-plugin-style';
+		}
+		/**
+		 * Filters the wrapper element class.
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $wrapper_class Class names.
+		 */
+		$wrapper_class = apply_filters( 'awsm_jobs_wrapper_class', $wrapper_class );
+		if ( $echo ) {
+			echo esc_attr( $wrapper_class );
+		} else {
+			return $wrapper_class;
+		}
 	}
 }
 
 if ( ! function_exists( 'awsm_jobs_view_class' ) ) {
-	function awsm_jobs_view_class( $class = '' ) {
-		$view_class = AWSM_Job_Openings::get_job_listing_view_class();
+	function awsm_jobs_view_class( $class = '', $shortcode_atts = array() ) {
+		$view_class = AWSM_Job_Openings::get_job_listing_view_class( $shortcode_atts );
 		if ( ! empty( $class ) ) {
 			$view_class = trim( $view_class . ' ' . $class );
 		}
@@ -80,7 +123,7 @@ if ( ! function_exists( 'awsm_jobs_data_attrs' ) ) {
 
 if ( ! function_exists( 'awsm_job_content_class' ) ) {
 	function awsm_job_content_class( $class = '' ) {
-		$content_class = 'awsm-job-single-wrap' . AWSM_Job_Openings::get_job_details_class();
+		$content_class = 'awsm-job-single-wrap' . awsm_jobs_wrapper_class( false ) . AWSM_Job_Openings::get_job_details_class();
 		if ( ! empty( $class ) ) {
 			$content_class .= ' ' . $class;
 		}
@@ -136,24 +179,62 @@ if ( ! function_exists( 'awsm_job_more_details' ) ) {
 	}
 }
 
+if ( ! function_exists( 'awsm_jobs_paginate_links' ) ) {
+	function awsm_jobs_paginate_links( $query, $shortcode_atts = array() ) {
+		$current       = ( $query->query_vars['paged'] ) ? (int) $query->query_vars['paged'] : 1;
+		$max_num_pages = isset( $query->max_num_pages ) ? $query->max_num_pages : 1;
+
+		$base_url = get_pagenum_link();
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['awsm_pagination_base'] ) ) {
+			$base_url = $_POST['awsm_pagination_base'];
+		}
+		// phpcs:enable
+
+		$args               = array(
+			'base'    => esc_url_raw( add_query_arg( 'paged', '%#%', $base_url ) ),
+			'format'  => '',
+			'type'    => 'list',
+			'current' => max( 1, $current ),
+			'total'   => $max_num_pages,
+		);
+		$pagination_content = sprintf( '<div class="awsm-jobs-pagination awsm-load-more-classic" data-effect-duration="slow">%s</div>', paginate_links( $args ) );
+		/**
+		 * Filters the paginate links content.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $pagination_content The HTML content.
+		 * @param WP_Query $query The Query object.
+		 * @param array $args Paginate links arguments.
+		 * @param array $shortcode_atts Shortcode attributes.
+		 */
+		return apply_filters( 'awsm_jobs_paginate_links_content', $pagination_content, $query, $args, $shortcode_atts );
+	}
+}
+
 if ( ! function_exists( 'awsm_jobs_load_more' ) ) {
 	function awsm_jobs_load_more( $query, $shortcode_atts = array() ) {
-		$loadmore = isset( $shortcode_atts['loadmore'] ) && $shortcode_atts['loadmore'] === 'no' ? false : true;
-		if ( $loadmore ) {
-			$max_num_pages = $query->max_num_pages;
-			$paged         = ( $query->query_vars['paged'] ) ? $query->query_vars['paged'] : 1;
-			if ( $max_num_pages > 1 && $paged < $max_num_pages ) {
-				$load_more_content = sprintf( '<div class="awsm-load-more-main"><a href="#" class="awsm-load-more awsm-load-more-btn" data-page="%2$s">%1$s</a></div>', esc_html__( 'Load more...', 'wp-job-openings' ), esc_attr( $paged ) );
-				/**
-				 * Filters the load more content.
-				 *
-				 * @since 2.3.0
-				 *
-				 * @param string $load_more_content The HTML content.
-				 * @param WP_Query $query The Query object.
-				 * @param array $shortcode_atts Shortcode attributes.
-				 */
-				echo apply_filters( 'awsm_jobs_load_more_content', $load_more_content, $query, $shortcode_atts ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$loadmore      = isset( $shortcode_atts['loadmore'] ) && $shortcode_atts['loadmore'] === 'no' ? false : true;
+		$max_num_pages = $query->max_num_pages;
+		if ( $loadmore && $max_num_pages > 1 ) {
+			if ( AWSM_Job_Openings::is_default_pagination( $shortcode_atts ) ) {
+				$paged = ( $query->query_vars['paged'] ) ? $query->query_vars['paged'] : 1;
+				if ( $paged < $max_num_pages ) {
+					$load_more_content = sprintf( '<div class="awsm-jobs-pagination awsm-load-more-main"><a href="#" class="awsm-load-more awsm-load-more-btn" data-page="%2$s">%1$s</a></div>', esc_html__( 'Load more...', 'wp-job-openings' ), esc_attr( $paged ) );
+					/**
+					 * Filters the load more content.
+					 *
+					 * @since 2.3.0
+					 *
+					 * @param string $load_more_content The HTML content.
+					 * @param WP_Query $query The Query object.
+					 * @param array $shortcode_atts Shortcode attributes.
+					 */
+					echo apply_filters( 'awsm_jobs_load_more_content', $load_more_content, $query, $shortcode_atts ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
+			} else {
+				echo awsm_jobs_paginate_links( $query );
 			}
 		}
 	}
@@ -169,7 +250,19 @@ if ( ! function_exists( 'awsm_no_jobs_msg' ) ) {
 if ( ! function_exists( 'awsm_jobs_expired_msg' ) ) {
 	function awsm_jobs_expired_msg( $before = '', $after = '' ) {
 		$msg = esc_html__( 'Sorry! This job has expired.', 'wp-job-openings' );
-		echo $before . $msg . $after; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		/**
+		 * Filters the expired job content.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $content The HTML content.
+		 * @param string $msg Expired message.
+		 * @param string $before The content before expired message.
+		 * @param string $after The content after expired message.
+		 */
+		$msg_content = apply_filters( 'awsm_job_expired_content', $before . $msg . $after, $msg, $before, $after );
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $msg_content;
 	}
 }
 

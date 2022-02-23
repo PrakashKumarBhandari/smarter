@@ -5,17 +5,17 @@
  * Override this by copying it to currenttheme/wp-job-openings/job-openings/main.php
  *
  * @package wp-job-openings
- * @version 2.2.0
+ * @version 3.1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$view           = awsm_jobs_view();
+$shortcode_atts = isset( $shortcode_atts ) ? $shortcode_atts : array();
+$view           = awsm_jobs_view( $shortcode_atts );
 $awsm_filters   = get_option( 'awsm_jobs_filter' );
 $listing_specs  = get_option( 'awsm_jobs_listing_specs' );
-$shortcode_atts = isset( $shortcode_atts ) ? $shortcode_atts : array();
 
 /**
  * Fires before The Loop to query for jobs.
@@ -34,21 +34,22 @@ while ( $query->have_posts() ) {
 	$attrs  = awsm_jobs_listing_item_class( array( "awsm-{$view}-item" ) );
 	$attrs .= sprintf( ' id="awsm-%1$s-item-%2$s"', esc_attr( $view ), esc_attr( $job_details['id'] ) );
 
-	echo ( $view === 'grid' ) ? sprintf( '<a href="%1$s" %2$s>', esc_url( $job_details['permalink'] ), $attrs ) : '<div ' . $attrs . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<div ' . $attrs . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	?>
-		<div class="awsm-job-item">
+		<?php echo ( $view === 'grid' ) ? sprintf( '<a href="%s" class="awsm-job-item">', esc_url( $job_details['permalink'] ) ) : '<div class="awsm-job-item">'; ?>
 			<div class="awsm-<?php echo esc_attr( $view ); ?>-left-col">
 				<?php
 					/**
-					 * before_awsm_jobs_listing_left_col_content hook
+					 * before_awsm_jobs_listing_title hook
 					 *
-					 * @since 1.1.0
-					 * @since 2.2.0 The `$job_id` and `$shortcode_atts` parameters were added.
+					 * @since 3.0.0
 					 *
 					 * @param int $job_id The Job ID.
 					 * @param array $shortcode_atts Attributes array if shortcode is used, else an empty array.
 					 */
-					do_action( 'before_awsm_jobs_listing_left_col_content', $job_details['id'], $shortcode_atts );
+					do_action( 'before_awsm_jobs_listing_title', $job_details['id'], $shortcode_atts );
+
+					do_action_deprecated( 'before_awsm_jobs_listing_left_col_content', array( $job_details['id'], $shortcode_atts ), '3.0.0', 'before_awsm_jobs_listing_title' );
 				?>
 
 				<?php awsm_jobs_featured_image(); ?>
@@ -62,50 +63,53 @@ while ( $query->have_posts() ) {
 
 				<?php
 					/**
-					 * after_awsm_jobs_listing_left_col_content hook
+					 * after_awsm_jobs_listing_title hook
 					 *
-					 * @since 1.1.0
-					 * @since 2.2.0 The `$job_id` and `$shortcode_atts` parameters were added.
+					 * @since 3.0.0
 					 *
 					 * @param int $job_id The Job ID.
 					 * @param array $shortcode_atts Attributes array if shortcode is used, else an empty array.
 					 */
-					do_action( 'after_awsm_jobs_listing_left_col_content', $job_details['id'], $shortcode_atts );
+					do_action( 'after_awsm_jobs_listing_title', $job_details['id'], $shortcode_atts );
+
+					do_action_deprecated( 'after_awsm_jobs_listing_left_col_content', array( $job_details['id'], $shortcode_atts ), '3.0.0', 'after_awsm_jobs_listing_title' );
 				?>
 			</div>
 
 			<div class="awsm-<?php echo esc_attr( $view ); ?>-right-col">
 				<?php
 					/**
-					 * before_awsm_jobs_listing_right_col_content hook
+					 * before_awsm_jobs_listing_specs_content hook
 					 *
-					 * @since 1.1.0
-					 * @since 2.2.0 The `$job_id` and `$shortcode_atts` parameters were added.
+					 * @since 3.0.0
 					 *
 					 * @param int $job_id The Job ID.
 					 * @param array $shortcode_atts Attributes array if shortcode is used, else an empty array.
 					 */
-					do_action( 'before_awsm_jobs_listing_right_col_content', $job_details['id'], $shortcode_atts );
+					do_action( 'before_awsm_jobs_listing_specs_content', $job_details['id'], $shortcode_atts );
+
+					do_action_deprecated( 'before_awsm_jobs_listing_right_col_content', array( $job_details['id'], $shortcode_atts ), '3.0.0', 'before_awsm_jobs_listing_specs_content' );
 
 					awsm_job_listing_spec_content( $job_details['id'], $awsm_filters, $listing_specs );
 
 					awsm_job_more_details( $job_details['permalink'], $view );
 
 					/**
-					 * after_awsm_jobs_listing_right_col_content hook
+					 * after_awsm_jobs_listing_specs_content hook
 					 *
-					 * @since 1.1.0
-					 * @since 2.2.0 The `$job_id` and `$shortcode_atts` parameters were added.
+					 * @since 3.0.0
 					 *
 					 * @param int $job_id The Job ID.
 					 * @param array $shortcode_atts Attributes array if shortcode is used, else an empty array.
 					 */
-					do_action( 'after_awsm_jobs_listing_right_col_content', $job_details['id'], $shortcode_atts );
+					do_action( 'after_awsm_jobs_listing_specs_content', $job_details['id'], $shortcode_atts );
+
+					do_action_deprecated( 'after_awsm_jobs_listing_right_col_content', array( $job_details['id'], $shortcode_atts ), '3.0.0', 'after_awsm_jobs_listing_specs_content' );
 				?>
 			</div>
-		</div>
+		<?php echo ( $view === 'grid' ) ? '</a>' : '</div>'; ?>
 	<?php
-	echo ( $view === 'grid' ) ? '</a>' : '</div>';
+	echo '</div>';
 }
 
 wp_reset_postdata();

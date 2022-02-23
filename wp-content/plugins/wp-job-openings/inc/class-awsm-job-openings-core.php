@@ -8,7 +8,7 @@ class AWSM_Job_Openings_Core {
 	private static $instance = null;
 
 	public function __construct() {
-		add_action( 'init', array( $this, 'register_post_types' ) );
+		add_action( 'init', array( $this, 'register_post_types' ), 5 );
 
 		// hide uploaded files.
 		if ( get_option( 'awsm_hide_uploaded_files' ) === 'hide_files' ) {
@@ -144,7 +144,7 @@ class AWSM_Job_Openings_Core {
 				'show_in_menu'    => 'edit.php?post_type=awsm_job_openings',
 				'capability_type' => 'application',
 				'capabilities'    => array(
-					'create_posts' => false,
+					'create_posts' => 'do_not_allow',
 				),
 				'supports'        => false,
 				'rewrite'         => false,
@@ -212,9 +212,10 @@ class AWSM_Job_Openings_Core {
 	}
 
 	private function add_custom_role() {
-		$caps            = $this->get_caps();
-		$hr_caps         = array_merge( $caps['level_1'], $caps['level_2'], $caps['level_3'], $caps['level_4'] );
-		$hr_caps['read'] = true;
+		$caps                    = $this->get_caps();
+		$hr_caps                 = array_merge( $caps['level_1'], $caps['level_2'], $caps['level_3'], $caps['level_4'] );
+		$hr_caps['read']         = true;
+		$hr_caps['upload_files'] = true;
 		add_role( 'hr', __( 'HR', 'wp-job-openings' ), $hr_caps );
 	}
 
@@ -263,9 +264,16 @@ class AWSM_Job_Openings_Core {
 
 	public static function get_attachments_meta_query( $meta_query ) {
 		$query = array(
-			'key'     => '_wp_attached_file',
-			'compare' => 'NOT LIKE',
-			'value'   => AWSM_JOBS_UPLOAD_DIR_NAME,
+			'relation' => 'OR',
+			array(
+				'key'     => '_wp_attached_file',
+				'compare' => 'NOT EXISTS',
+			),
+			array(
+				'key'     => '_wp_attached_file',
+				'compare' => 'NOT LIKE',
+				'value'   => AWSM_JOBS_UPLOAD_DIR_NAME,
+			),
 		);
 
 		if ( is_array( $meta_query ) && ! empty( $meta_query ) ) {
@@ -395,7 +403,8 @@ class AWSM_Job_Openings_Core {
 	 */
 	public function login_redirect( $redirect_to, $requested_redirect_to, $user ) {
 		if ( ! is_wp_error( $user ) && ( empty( $redirect_to ) || 'wp-admin/' === $redirect_to || admin_url() === $redirect_to ) ) {
-			if ( isset( $user->roles ) && is_array( $user->roles ) && in_array( 'hr', $user->roles ) && ! $user->has_cap( 'edit_posts' ) && $user->has_cap( 'edit_jobs' ) ) {
+			if ( ! empty( $user->roles ) && is_array( $user->roles ) && in_array( 'hr', $user->roles ) && ! $user->has_cap( 'edit_posts' ) && $user->has_cap( 'edit_jobs' ) ) {
+				$url = add_query_arg( array( 'page' => 'awsm-jobs-overview' ), admin_url( 'edit.php?post_type=awsm_job_openings' ) );
 				/**
 				 * Filters login redirection URL for the HR user.
 				 *
@@ -404,7 +413,7 @@ class AWSM_Job_Openings_Core {
 				 * @param string $redirect_url The redirect destination URL.
 				 * @param WP_User|WP_Error $user WP_User object if login was successful, WP_Error object otherwise.
 				 */
-				$redirect_url = apply_filters( 'awsm_jobs_login_redirect', admin_url( 'edit.php?post_type=awsm_job_openings' ), $user );
+				$redirect_url = apply_filters( 'awsm_jobs_login_redirect', esc_url_raw( $url ), $user );
 				if ( ! empty( $redirect_url ) ) {
 					$redirect_to = $redirect_url;
 				}

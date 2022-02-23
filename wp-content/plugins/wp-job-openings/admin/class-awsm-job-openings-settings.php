@@ -8,6 +8,10 @@ class AWSM_Job_Openings_Settings {
 
 	private $permalink_msg_shown = false;
 
+	protected $cpath = null;
+
+	public $awsm_core = null;
+
 	public function __construct( $awsm_core ) {
 		$this->cpath     = untrailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->awsm_core = $awsm_core;
@@ -22,6 +26,7 @@ class AWSM_Job_Openings_Settings {
 		add_action( 'update_option_awsm_jobs_remove_permalink_front_base', array( $this, 'update_permalink_front_base' ), 10, 2 );
 		add_action( 'update_option_awsm_jobs_disable_archive_page', array( $this, 'update_jobs_archive_page' ) );
 		add_action( 'update_option_awsm_hide_uploaded_files', array( $this, 'update_awsm_hide_uploaded_files' ), 10, 2 );
+		add_action( 'update_option_awsm_jobs_filter', array( $this, 'update_awsm_jobs_filter' ), 10, 2 );
 		add_action( 'update_option_awsm_jobs_remove_filters', array( $this, 'update_awsm_jobs_remove_filters' ), 10, 2 );
 		add_action( 'update_option_awsm_jobs_make_specs_clickable', array( $this, 'update_awsm_jobs_make_specs_clickable' ), 10, 2 );
 		add_action( 'update_option_awsm_jobs_email_digest', array( $this, 'update_awsm_jobs_email_digest' ), 10, 2 );
@@ -196,15 +201,25 @@ class AWSM_Job_Openings_Settings {
 					'callback'    => array( $this, 'sanitize_array_fields' ),
 				),
 				array(
+					/** @since 3.2.0 */
+					'option_name' => 'awsm_jobs_archive_page_template',
+					'callback'    => array( $this, 'jobs_archive_page_template_handler' ),
+				),
+				array(
 					'option_name' => 'awsm_jobs_listing_specs',
 					'callback'    => array( $this, 'sanitize_array_fields' ),
 				),
 				array(
 					/** @since 1.1.0 */
 					'option_name' => 'awsm_jobs_details_page_template',
+					'callback'    => array( $this, 'job_detail_page_template_handler' ),
 				),
 				array(
 					'option_name' => 'awsm_jobs_details_page_layout',
+				),
+				array(
+					/** @since 3.0.0 */
+					'option_name' => 'awsm_jobs_pagination_type',
 				),
 				array(
 					'option_name' => 'awsm_jobs_expired_jobs_listings',
@@ -255,6 +270,14 @@ class AWSM_Job_Openings_Settings {
 				array(
 					/** @since 1.1.0 */
 					'option_name' => 'awsm_current_form_subtab',
+				),
+				array(
+					/** @since 3.1.0 */
+					'option_name' => 'awsm_jobs_form_style',
+				),
+				array(
+					/** @since 3.2.0 */
+					'option_name' => 'awsm_jobs_enable_akismet_protection',
 				),
 				array(
 					'option_name' => 'awsm_jobs_admin_upload_file_ext',
@@ -404,11 +427,10 @@ class AWSM_Job_Openings_Settings {
 			'awsm_jobs_from_email_notification'       => get_option( 'admin_email' ),
 			'awsm_jobs_admin_from_email_notification' => get_option( 'admin_email' ),
 		);
-		if ( ! empty( $options ) ) {
-			foreach ( $options as $option => $value ) {
-				if ( ! get_option( $option ) ) {
-					update_option( $option, $value );
-				}
+
+		foreach ( $options as $option => $value ) {
+			if ( ! get_option( $option ) ) {
+				update_option( $option, $value );
 			}
 		}
 	}
@@ -505,11 +527,7 @@ class AWSM_Job_Openings_Settings {
 		return $match;
 	}
 
-	public function validate_from_email_id( $email, $option_name = '' ) {
-		if ( ! empty( $option_name ) ) {
-			_deprecated_argument( __METHOD__, '2.2.0' );
-		}
-
+	public function validate_from_email_id( $email ) {
 		$site_domain = strtolower( $_SERVER['SERVER_NAME'] );
 		if ( $this->is_localhost() ) {
 			return $email;
@@ -543,13 +561,6 @@ class AWSM_Job_Openings_Settings {
 		return sanitize_email( $email );
 	}
 
-	public function sanitize_admin_from_email_id( $email ) {
-		_deprecated_function( __METHOD__, '2.2.0', 'AWSM_Job_Openings_Settings::sanitize_from_email_id' );
-
-		$email = sanitize_email( $email );
-		return $this->validate_from_email_id( $email, 'awsm_jobs_admin_from_email_notification' );
-	}
-
 	public function sanitize_list_per_page( $input ) {
 		$number_of_columns = intval( $input );
 		if ( $number_of_columns < 1 ) {
@@ -564,6 +575,25 @@ class AWSM_Job_Openings_Settings {
 			$input = array_map( 'sanitize_text_field', $input );
 		}
 		return $input;
+	}
+
+	public function jobs_archive_page_template_handler( $input ) {
+		return $this->template_handler( 'awsm_jobs_archive_page_template', $input );
+	}
+
+	public function job_detail_page_template_handler( $input ) {
+		return $this->template_handler( 'awsm_jobs_details_page_template', $input );
+	}
+
+	public function template_handler( $option_name, $template ) {
+		$template = sanitize_text_field( $template );
+		if ( ( $template === 'custom' || $template === 'plugin' ) && function_exists( 'wp_is_block_theme' ) ) {
+			if ( wp_is_block_theme() ) {
+				$prefix = str_replace( array( 'awsm_jobs_', '_' ), array( '', ' ' ), $option_name );
+				add_settings_error( $option_name, str_replace( '_', '-', $option_name ), ucwords( $prefix ) . ': ' . esc_html__( 'Block theme detected! It is recommended to use a theme template instead of plugin generated template.', 'wp-job-openings' ), 'awsm-jobs-warning' );
+			}
+		}
+		return $template;
 	}
 
 	public function awsm_jobs_filter_handle( $filters ) {
@@ -600,18 +630,10 @@ class AWSM_Job_Openings_Settings {
 				if ( isset( $filter['remove_tags'] ) ) {
 					if ( ! empty( $filter['remove_tags'] ) ) {
 						$remove_tags = $filter['remove_tags'];
-						if ( isset( $filter['tags'] ) ) {
-							if ( ! empty( $filter['tags'] ) ) {
-								$remove_tags = array_diff( $remove_tags, $filter['tags'] );
-							}
-						}
-						if ( ! empty( $remove_tags ) ) {
-							foreach ( $remove_tags as $remove_tag ) {
-								$slug = sanitize_title( $remove_tag );
-								$term = get_term_by( 'slug', $slug, $spec_key );
-								if ( $term instanceof \WP_Term ) {
-									wp_delete_term( $term->term_id, $spec_key );
-								}
+						foreach ( $remove_tags as $remove_tag ) {
+							$term = get_term_by( 'id', $remove_tag, $spec_key );
+							if ( $term instanceof \WP_Term ) {
+								wp_delete_term( $term->term_id, $spec_key );
 							}
 						}
 					}
@@ -629,6 +651,12 @@ class AWSM_Job_Openings_Settings {
 			}
 		}
 		return $filters;
+	}
+
+	public function update_awsm_jobs_filter( $old_value, $new_value ) {
+		$awsm_job_openings = AWSM_Job_Openings::init();
+		$awsm_job_openings->awsm_jobs_taxonomies( $new_value );
+		$awsm_job_openings->insert_specs_terms( $new_value );
 	}
 
 	public function update_awsm_jobs_remove_filters( $old_value, $new_value ) {
@@ -681,7 +709,10 @@ class AWSM_Job_Openings_Settings {
 		if ( ! empty( $gdpr_enable ) && empty( $input ) ) {
 			$input = esc_html__( 'By using this form you agree with the storage and handling of your data by this website.', 'wp-job-openings' );
 		}
-		return htmlentities( $input, ENT_QUOTES );
+		if ( ! class_exists( 'AWSM_Job_Openings_Form' ) ) {
+			require_once AWSM_JOBS_PLUGIN_DIR . '/inc/class-awsm-job-openings-form.php';
+		}
+		return wp_kses( $input, AWSM_Job_Openings_Form::get_allowed_html() );
 	}
 
 	public function notification_customizer_handler( $input ) {
@@ -1066,8 +1097,8 @@ class AWSM_Job_Openings_Settings {
 		if ( ! empty( $tax_details ) && ! is_numeric( $index ) ) {
 			return;
 		}
+		$spec_title = $row_data = $del_btn_data = $icon_option = $tag_options = ''; // phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
 
-		$spec_title    = $row_data = $del_btn_data = $icon_option = $tag_options = ''; // phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
 		$spec_key_html = sprintf( '<input type="text" class="widefat awsm-jobs-spec-key" name="awsm_jobs_filter[%1$s][taxonomy]" value="" maxlength="32" placeholder="%2$s" title="%3$s" required /><input type="hidden" name="awsm_jobs_filter[%1$s][register]" value="true" />', esc_attr( $index ), esc_attr__( 'Specification key', 'wp-job-openings' ), esc_attr__( 'The job specification key should only contain alphanumeric, latin characters separated by hyphen/underscore, and cannot begin or end with a hyphen/underscore.', 'wp-job-openings' ) );
 
 		if ( ! empty( $tax_details ) && isset( $tax_details['key'] ) && isset( $tax_details['options'] ) ) {
@@ -1093,7 +1124,7 @@ class AWSM_Job_Openings_Settings {
 			);
 			if ( ! empty( $terms ) ) {
 				foreach ( $terms as $term ) {
-					$tag_options .= sprintf( '<option value="%1$s" selected>%1$s</option>', esc_attr( $term->name ) );
+					$tag_options .= sprintf( '<option value="%1$s" data-termid="%2$s" selected>%1$s (%3$s)</option>', esc_attr( $term->name ), esc_attr( $term->term_id ), esc_attr( $term->count ) );
 				}
 			}
 		}

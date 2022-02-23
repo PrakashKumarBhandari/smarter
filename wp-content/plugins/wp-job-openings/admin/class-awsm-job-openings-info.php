@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class AWSM_Job_Openings_Info {
 	private static $instance = null;
 
+	protected $cpath = null;
+
 	public function __construct() {
 		$this->cpath = untrailingslashit( plugin_dir_path( __FILE__ ) );
 		add_action( 'admin_init', array( $this, 'redirect_to_setup' ) );
@@ -98,7 +100,8 @@ class AWSM_Job_Openings_Info {
 					}
 				}
 				update_option( 'awsm_jobs_plugin_version', AWSM_JOBS_PLUGIN_VERSION );
-				$response['redirect']  = esc_url( admin_url( 'edit.php?post_type=awsm_job_openings' ) );
+
+				$response['redirect']  = esc_url_raw( add_query_arg( array( 'page' => 'awsm-jobs-overview' ), admin_url( 'edit.php?post_type=awsm_job_openings' ) ) );
 				$response['success'][] = esc_html__( 'Setup successfully completed!', 'wp-job-openings' );
 			}
 		}
@@ -108,7 +111,6 @@ class AWSM_Job_Openings_Info {
 
 	public function custom_admin_menu() {
 		add_submenu_page( 'edit.php?post_type=awsm_job_openings', esc_html__( 'WP Job Openings Setup', 'wp-job-openings' ), esc_html__( 'Setup', 'wp-job-openings' ), 'manage_options', 'awsm-jobs-setup', array( $this, 'setup_page' ) );
-		add_submenu_page( 'edit.php?post_type=awsm_job_openings', esc_html__( 'Help', 'wp-job-openings' ), esc_html__( 'Help', 'wp-job-openings' ), 'manage_awsm_jobs', 'awsm-jobs-help-page', array( $this, 'help_page' ) );
 		add_submenu_page( 'edit.php?post_type=awsm_job_openings', esc_html__( 'Add-ons', 'wp-job-openings' ), esc_html__( 'Add-ons', 'wp-job-openings' ), 'manage_awsm_jobs', 'awsm-jobs-add-ons', array( $this, 'add_ons_page' ) );
 
 		// Add Get PRO link in submenu.
@@ -116,7 +118,7 @@ class AWSM_Job_Openings_Info {
 			global $submenu;
 			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 			$submenu['edit.php?post_type=awsm_job_openings'][] = array(
-				sprintf( '<span class="awsm-jobs-get-pro">%s</span>', esc_html__( 'Get PRO', 'wp-job-openings' ) ),
+				sprintf( '<span class="awsm-jobs-get-pro">%s</span>', esc_html__( 'Upgrade', 'wp-job-openings' ) ),
 				'edit_others_applications',
 				esc_url( 'https://awsm.in/get/wpjo-pro/' ),
 			);
@@ -125,15 +127,10 @@ class AWSM_Job_Openings_Info {
 
 	public function remove_menu() {
 		remove_submenu_page( 'edit.php?post_type=awsm_job_openings', 'awsm-jobs-setup' );
-		remove_submenu_page( 'edit.php?post_type=awsm_job_openings', 'awsm-jobs-help-page' );
 	}
 
 	public function setup_page() {
 		include_once $this->cpath . '/templates/info/setup.php';
-	}
-
-	public function help_page() {
-		include_once $this->cpath . '/templates/info/help.php';
 	}
 
 	public function add_ons_page() {
@@ -276,7 +273,7 @@ class AWSM_Job_Openings_Info {
 				),
 				array(
 					'visible' => ! class_exists( 'AWSM_Job_Openings_Pro_Pack' ) && current_user_can( 'edit_others_applications' ),
-					'label'   => __( 'Get PRO', 'wp-job-openings' ),
+					'label'   => __( 'Upgrade', 'wp-job-openings' ),
 					'url'     => 'https://awsm.in/get/wpjo-pro/',
 					'class'   => array( 'button' ),
 					'target'  => '_blank',
@@ -294,7 +291,9 @@ class AWSM_Job_Openings_Info {
 			?>
 				<div class="awsm-job-admin-nav-header">
 					<div class="awsm-job-admin-nav-logo">
-						<h1><?php esc_html_e( 'WP Job Openings', 'wp-job-openings' ); ?></h1>
+						<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=awsm_job_openings&page=awsm-jobs-overview' ) ); ?>">
+							<?php esc_html_e( 'WP Job Openings', 'wp-job-openings' ); ?>
+						</a>
 					</div>
 					<ul class="awsm-job-admin-nav">
 						<?php

@@ -5,7 +5,7 @@
  * Override this by copying it to currenttheme/wp-job-openings/job-openings-view.php
  *
  * @package wp-job-openings
- * @version 2.2.0
+ * @version 3.1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -29,7 +29,7 @@ do_action( 'before_awsm_jobs_listing', $shortcode_atts );
 $query = awsm_jobs_query( $shortcode_atts );
 
 if ( $query->have_posts() ) : ?>
-	<div class="awsm-job-wrap">
+	<div class="awsm-job-wrap<?php awsm_jobs_wrapper_class(); ?>">
 
 		<?php
 			/**
@@ -47,7 +47,7 @@ if ( $query->have_posts() ) : ?>
 			do_action( 'awsm_filter_form', $shortcode_atts );
 		?>
 
-		<div <?php awsm_jobs_view_class(); ?><?php awsm_jobs_data_attrs( array(), $shortcode_atts ); ?>>
+		<div <?php awsm_jobs_view_class( '', $shortcode_atts ); ?><?php awsm_jobs_data_attrs( array(), $shortcode_atts ); ?>>
 			<?php include get_awsm_jobs_template_path( 'main', 'job-openings' ); ?>
 		</div>
 

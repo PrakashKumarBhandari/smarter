@@ -26,6 +26,35 @@ if ( ! empty( $upload_file_extns ) ) {
 		array(
 			'general'   => array(
 				array(
+					'name'          => 'awsm_jobs_form_style',
+					'label'         => __( 'Form Style', 'wp-job-openings' ),
+					'type'          => 'radio',
+					'choices'       => array(
+						array(
+							'value' => 'theme',
+							'text'  => __( 'Theme Based', 'wp-job-openings' ),
+						),
+						array(
+							'value' => 'plugin',
+							'text'  => __( 'Plugin Based', 'wp-job-openings' ),
+						),
+					),
+					'default_value' => 'theme',
+				),
+				array(
+					'visible'     => awsm_jobs_is_akismet_active(),
+					'name'        => 'awsm_jobs_enable_akismet_protection',
+					'label'       => __( 'Akismet Anti-Spam', 'wp-job-openings' ),
+					'type'        => 'checkbox',
+					'choices'     => array(
+						array(
+							'value' => 'enable',
+							'text'  => __( 'Enable Akismet Anti-Spam protection', 'wp-job-openings' ),
+						),
+					),
+					'description' => __( 'Block the spam job applications based on Akismet Anti-Spam protection.', 'wp-job-openings' ),
+				),
+				array(
 					'id'    => 'awsm-form-options-title',
 					'label' => __( 'Application form options', 'wp-job-openings' ),
 					'type'  => 'title',
